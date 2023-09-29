@@ -4,7 +4,7 @@ import {
   createBrowserRouter,
 } from 'react-router-dom';
 import { HeroesApp } from '../HeroesApp';
-import { DcPage, MarvelPage } from '../heroes';
+import { DcPage, HeroPage, MarvelPage, SearchPage } from '../heroes';
 import { LoginPage } from '../auth';
 
 export const AppRouter = () => {
@@ -14,16 +14,12 @@ export const AppRouter = () => {
       element: <LoginPage />,
     },
     {
-      path: '*',
-      element: <Navigate to="/" replace />,
-    },
-    {
       path: '/',
       element: <HeroesApp />,
       children: [
         {
           path: '/',
-          element: <MarvelPage />,
+          element: <Navigate to="marvel" />,
         },
         {
           path: 'marvel',
@@ -32,6 +28,14 @@ export const AppRouter = () => {
         {
           path: 'dc',
           element: <DcPage />,
+        },
+        {
+          path: 'search',
+          element: <SearchPage />,
+        },
+        {
+          path: 'hero/:id',
+          element: <HeroPage />,
         },
         {
           path: '*',

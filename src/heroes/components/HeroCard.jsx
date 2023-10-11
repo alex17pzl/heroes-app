@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 const CharactersByHero = ({ alter_ego, characters }) => {
-  if (alter_ego === characters) return <></>;
-  return <p>{characters}</p>;
-};
+  if (alter_ego === characters) return <></>
+  return <p>{characters}</p>
+}
 
 export const HeroCard = ({
   id,
@@ -14,7 +14,7 @@ export const HeroCard = ({
   first_appearance,
   characters,
 }) => {
-  const heroImageUrl = `/assets/heroes/${id}.jpg`;
+  const heroImageUrl = `/heroes/${id}.jpg`
 
   return (
     <div className="col animate__animated animate__fadeIn">
@@ -38,5 +38,5 @@ export const HeroCard = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

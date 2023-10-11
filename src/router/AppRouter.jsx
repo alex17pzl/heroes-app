@@ -1,49 +1,55 @@
-import {
-  Navigate,
-  RouterProvider,
-  createBrowserRouter,
-} from 'react-router-dom';
-import { HeroesApp } from '../HeroesApp';
-import { DcPage, HeroPage, MarvelPage, SearchPage } from '../heroes';
-import { LoginPage } from '../auth';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { HeroesApp } from '../HeroesApp'
+import { DcPage, HeroPage, MarvelPage, SearchPage } from '../heroes'
+import { LoginPage } from '../auth'
+import PublicRoute from './PublicRoute'
+import PrivateRoute from './PrivateRoute'
 
 export const AppRouter = () => {
   const router = createBrowserRouter([
     {
-      path: 'login',
-      element: <LoginPage />,
+      path: '/login',
+      element: (
+        <PublicRoute>
+          <LoginPage />
+        </PublicRoute>
+      ),
     },
     {
       path: '/',
-      element: <HeroesApp />,
+      element: (
+        <PrivateRoute>
+          <HeroesApp />
+        </PrivateRoute>
+      ),
       children: [
         {
           path: '/',
           element: <Navigate to="marvel" />,
         },
         {
-          path: 'marvel',
+          path: '/marvel',
           element: <MarvelPage />,
         },
         {
-          path: 'dc',
+          path: '/dc',
           element: <DcPage />,
         },
         {
-          path: 'search',
+          path: '/search',
           element: <SearchPage />,
         },
         {
-          path: 'hero/:id',
+          path: '/hero/:id',
           element: <HeroPage />,
         },
         {
-          path: '*',
+          path: '/*',
           element: <Navigate to="marvel" replace />,
         },
       ],
     },
-  ]);
+  ])
 
-  return <RouterProvider router={router} />;
-};
+  return <RouterProvider router={router} />
+}
